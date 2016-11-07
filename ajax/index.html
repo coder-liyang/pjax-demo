@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ch">
+<head>
+    <meta charset="UTF-8">
+    <title>ajax图片站</title>
+    <link rel="stylesheet" href="../css/init.css">
+    <script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="../js/function.js"></script>
+    <script>
+        $(function(){
+            $(".load-time").text(CurentTime());
+        });
+    </script>
+    <script>
+        $.ajax({
+            url:"../js/data.json",
+            dataType:"json",
+            async:false,
+            success:function(data){
+                rows = data;
+            }
+        });
+
+        $(function(){
+            $(".pre").click(function(){
+                var num = $(".img-400").attr("data-num");
+                if (num == 1) {
+                    num = 5;
+                } else {
+                    num--;
+                }
+                $(".img-400").attr("src", "../img/"+rows[num-1]).attr("data-num", num);
+            });
+            $(".next").click(function(){
+                var num = $(".img-400").attr("data-num");
+                if (num == 5) {
+                    num = 1;
+                } else {
+                    num++;
+                }
+                $(".img-400").attr("src", "../img/"+rows[num-1]).attr("data-num", num);
+            });
+        });
+    </script>
+</head>
+<body>
+<h1>ajax翻页方式</h1>
+<p>页面加载时间:<span class="load-time"></span></p>
+<div class="box">
+    <div>
+        <img class="img-400" src="../img/1.png" data-num="1"/>
+    </div>
+    <div class="buttons">
+        <div class="button pre"><a href="javascript:;">上一张</a></div>
+        <div class="button next"><a href="javascript:;">下一张</a></div>
+    </div>
+</div>
+</body>
+</html>
