@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ch">
+<head>
+    <meta charset="UTF-8">
+    <title>最原始的翻页方式</title>
+    <link rel="stylesheet" href="../css/init.css">
+    <script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.pjax.js"></script>
+    <script type="text/javascript" src="../js/function.js"></script>
+    <script>
+        $(function(){
+            $(".load-time").text(CurentTime());
+        });
+    </script>
+</head>
+<body>
+<h1>pjax的翻页方式</h1>
+<p>页面加载时间:<span class="load-time"></span></p>
+<div class="box">
+    <div class="img-box">
+        <img class="img-400" src="../img/1.png"/>
+    </div>
+    <div class="buttons">
+        <div class="button pre"><a href="index5.html">上一张</a></div>
+        <div class="button next"><a href="index2.html">下一张</a></div>
+    </div>
+</div>
+
+</body>
+
+<script type="text/javascript">
+    $(function(){
+        $(document).pjax(".box a", ".box", {type:"GET"});
+//        //1 基本用法
+//        $(document).pjax('#container a', '.main1', {type:"GET"});
+//        //2 在表单提交时间上绑定pjax事件
+//        $(document).on('submit', 'form', function (event) {
+//            $.pjax.submit(event, '.main2', {timeout:6000});
+//        });
+//        //3 监控pjax事件
+//        $(document).on('pjax:send', function() {
+//            $('.main3').append('<div class="ok">监控pajx事件生效</div>');
+//            //$('.loading').fadeIn(2000,0.0);
+//            $('.loading').fadeIn(0,0.0);
+//        });
+//        //4 监控pajx完成事件
+//        $(document).on('pjax:complete', function() {
+//            //$('.loading').remove();
+//            $('.loading').fadeTo(2000,0);
+//        });
+    });
+</script>
+</html>
